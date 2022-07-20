@@ -1,0 +1,37 @@
+﻿@{
+    @model System.Collections.Generic.List<string>
+}
+
+<link href="/style.css" rel="stylesheet" />
+<div class="main">
+    <div class="heading">
+        This is a test web application to demonstrate the comparison on the strategy to handle images
+    </div>
+    <div class="sub-heading">
+        This page is showing images retrieved from database in base64 format
+        <br/>
+        <a href="/cdn">Load images from folder</a>
+    </div>
+    <div class="title">
+        African Safari
+    </div>
+    <div>
+        @if (Model?.Any() ?? false && Model.Count == 4)
+        {
+            <table>
+                <tr>
+                    @foreach (var image in Model.Take(2))
+                    {
+                        <td><img src="data:image/jpeg;base64,@image" /></td>
+                    }
+                </tr>
+                <tr>
+                    @foreach (var image in Model.Skip(2))
+                    {
+                        <td><img src="data:image/jpeg;base64,@image" /></td>
+                    }
+                </tr>
+            </table>
+        }
+    </div>
+</div>

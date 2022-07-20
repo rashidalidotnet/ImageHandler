@@ -1,0 +1,41 @@
+﻿div {
+    display:table;
+    margin:0 auto;
+    text-align: center;
+    font-family: sans-serif;
+}
+
+.title {
+    font-size: 30px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.heading {
+    font-size: 23px;
+    padding: 10px;
+    background: #f4efef;
+}
+
+.sub-heading {
+    font-size: 20px;
+    padding: 10px;
+}
+
+.main {
+    margin-bottom: 100px;
+    background: #e5e1e1;
+    padding-bottom: 50px
+}
+
+img {
+    width: 400px;
+}
+
+td{
+    padding:5px;
+}
+
+a {
+    color: #6e6161;
+}
