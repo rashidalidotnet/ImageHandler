@@ -1,38 +1,67 @@
-﻿@{ 
+﻿@{
     @model System.Collections.Generic.List<string>
 }
 
-    <link href="/style.css" rel="stylesheet" />
+<link href="/style.css" rel="stylesheet" />
 
-    <div class="main">
-        <div class="heading">
-            This is a test web application to demonstrate the comparison on the strategy to handle images
-        </div>
-        <div class="sub-heading">
-            This page is showing images retrieved as files from a folder
-            <br />
-            <a href="/base64">Load images from Database</a>
-        </div>
-        <div class="title">
-            African Safari
-        </div>
-        <div>
-            @if (Model?.Any() ?? false && Model.Count == 4)
-            {
-                <table>
-                    <tr>
-                        @foreach (var image in Model.Take(2))
-                        {
-                            <td><img src="/images/@image" /></td>
-                        }
-                    </tr>
-                    <tr>
-                        @foreach (var image in Model.Skip(2))
-                        {
-                            <td><img src="/images/@image" /></td>
-                        }
-                    </tr>
-                </table>
-            }
-        </div>
+<div class="main">
+    <div class="heading">
+        This is a test web application to demonstrate the comparison on the strategy to handle images
     </div>
+    <div class="sub-heading">
+        This page is showing images retrieved as files from a folder
+        <br />
+        Page loaded in <span id="pageLoadTime" style="color:#e03030;"></span> seconds
+        <br />
+        <a href="/base64">Load images from Database</a>
+    </div>
+    <div class="title">
+        African Safari
+    </div>
+    <div>
+        @if (Model?.Any() ?? false && Model.Count == 20)
+        {
+            <table>
+                <tr>
+                    @foreach (var image in Model.Take(4))
+                    {
+                        <td><img src="/images/@image" /></td>
+                    }
+                </tr>
+                <tr>
+                    @foreach (var image in Model.Skip(4).Take(4))
+                    {
+                        <td><img src="/images/@image" /></td>
+                    }
+                </tr>
+                <tr>
+                    @foreach (var image in Model.Take(8).Take(4))
+                    {
+                        <td><img src="/images/@image" /></td>
+                    }
+                </tr>
+                <tr>
+                    @foreach (var image in Model.Skip(12).Take(4))
+                    {
+                        <td><img src="/images/@image" /></td>
+                    }
+                </tr>
+                <tr>
+                    @foreach (var image in Model.Skip(16))
+                    {
+                        <td><img src="/images/@image" /></td>
+                    }
+                </tr>
+            </table>
+        }
+    </div>
+</div>
+
+<script>
+    window.onload = function () {
+        var loadTime = window.performance.timing.domContentLoadedEventEnd - window.performance.timing.navigationStart;
+        const loadTimeMS = this.parseInt(loadTime);
+        const loadTimeSeconds = loadTimeMS/1000;
+        this.document.getElementById("pageLoadTime").innerText = loadTimeSeconds;
+    }
+</script>

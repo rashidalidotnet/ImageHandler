@@ -9,7 +9,9 @@
     </div>
     <div class="sub-heading">
         This page is showing images retrieved from database in base64 format
-        <br/>
+        <br />
+        Page loaded in <span id="pageLoadTime" style="color:#e03030;"></span> seconds
+        <br />
         <a href="/cdn">Load images from folder</a>
     </div>
     <div class="title">
@@ -20,13 +22,31 @@
         {
             <table>
                 <tr>
-                    @foreach (var image in Model.Take(2))
+                    @foreach (var image in Model.Take(4))
                     {
                         <td><img src="data:image/jpeg;base64,@image" /></td>
                     }
                 </tr>
                 <tr>
-                    @foreach (var image in Model.Skip(2))
+                    @foreach (var image in Model.Skip(4).Take(4))
+                    {
+                        <td><img src="data:image/jpeg;base64,@image" /></td>
+                    }
+                </tr>
+                <tr>
+                    @foreach (var image in Model.Take(8).Take(4))
+                    {
+                        <td><img src="data:image/jpeg;base64,@image" /></td>
+                    }
+                </tr>
+                <tr>
+                    @foreach (var image in Model.Skip(12).Take(4))
+                    {
+                        <td><img src="data:image/jpeg;base64,@image" /></td>
+                    }
+                </tr>
+                <tr>
+                    @foreach (var image in Model.Skip(16))
                     {
                         <td><img src="data:image/jpeg;base64,@image" /></td>
                     }
@@ -35,3 +55,12 @@
         }
     </div>
 </div>
+
+<script>
+    window.onload = function () {
+        var loadTime = window.performance.timing.domContentLoadedEventEnd - window.performance.timing.navigationStart;
+        const loadTimeMS = this.parseInt(loadTime);
+        const loadTimeSeconds = loadTimeMS / 1000;
+        this.document.getElementById("pageLoadTime").innerText = loadTimeSeconds;
+    }
+</script>
